@@ -304,7 +304,7 @@ const AIPage = () => {
               <DialogHeader>
                 <DialogTitle>Note</DialogTitle>
                 <DialogDescription className="text-md font-bold text-red-700">
-                  You've used all your free trials. Subscribe now to continue
+                   You&apos;ve  used all your free trials. Subscribe now to continue
                   generating personalized travel plans.
                 </DialogDescription>
               </DialogHeader>
