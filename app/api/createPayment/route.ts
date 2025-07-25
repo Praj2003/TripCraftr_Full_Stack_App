@@ -83,7 +83,7 @@ export async function DELETE(req: Request) {
   const { email, plan } = body;
 
   try {
-    const subscription = await prisma.subscription.findUnique({
+    const subscription = await prisma.subscription.findFirst({
       where: {
         userEmail: email || "",
         plan: plan || "",
