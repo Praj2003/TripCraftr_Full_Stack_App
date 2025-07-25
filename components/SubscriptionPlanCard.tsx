@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 import { motion } from "motion/react";
@@ -25,7 +24,7 @@ type Details = {
 
 declare global {
   interface Window {
-    Razorpay: any;
+    Razorpay: new (options: any) => any;
   }
 }
 
@@ -33,7 +32,12 @@ import { useUser } from "@clerk/nextjs";
 
 import { toast } from "sonner";
 
-const SubscriptionPlanCard = ({ name, price, benefits,onRequestRevoke }: Details) => {
+const SubscriptionPlanCard = ({
+  name,
+  price,
+  benefits,
+  onRequestRevoke,
+}: Details) => {
   const [isActive, setIsActive] = useState<boolean | null>(null);
   const { user } = useUser();
   const loadRazorpayScript = () => {
@@ -84,41 +88,9 @@ const SubscriptionPlanCard = ({ name, price, benefits,onRequestRevoke }: Details
     };
 
     fetchSubscriptionStatus();
-  }, [user]);
+  }, [user,name]);
 
-  const handleRevokePlan = async (planName: string) => {
-    try {
-      const email = user?.primaryEmailAddress?.emailAddress;
-      if (!email) {
-        toast.error("User email not found, Please log in", {
-          duration: 5000,
-        });
-      }
-
-      const response = await fetch("/api/createPayment", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, plan: planName }),
-      });
-
-      if (response.ok) {
-        toast.success("Plan revoked successfully!", {
-          duration: 5000,
-        });
-      }
-
-      window.location.reload();
-    } catch (error) {
-      toast.error("Failed to revoke plan. Please try again later.", {
-        duration: 5000,
-      });
-      console.error("Error revoking plan:", error);
-    }
-  };
-
-  const handlePayment = async (amount: number) => {
+  const handlePayment = async () => {
     try {
       const isScripLoaded = await loadRazorpayScript();
       if (!isScripLoaded) {
@@ -151,7 +123,11 @@ const SubscriptionPlanCard = ({ name, price, benefits,onRequestRevoke }: Details
         name: "TripCraftr Subscription",
         description: "Cart Checkout Payment",
         order_id: orderData.data.id,
-        handler: async function (response: any) {
+        handler: async function (response: {
+          razorpay_payment_id: string;
+          razorpay_order_id?: string;
+          razorpay_signature?: string;
+        }) {
           try {
             const result = await fetch("/api/createPayment", {
               method: "POST",
@@ -185,7 +161,7 @@ const SubscriptionPlanCard = ({ name, price, benefits,onRequestRevoke }: Details
         },
       };
 
-      const rzp = await window.Razorpay(options);
+      const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (error) {
       console.error("Payment failed:", error);
@@ -223,7 +199,7 @@ const SubscriptionPlanCard = ({ name, price, benefits,onRequestRevoke }: Details
 
         <CardFooter className="absolute flex justify-start items-center bottom-7 left-4 gap-5">
           <motion.button
-            onClick={() => handlePayment(price)}
+            onClick={() => handlePayment()}
             disabled={isActive ? true : false}
             whileHover={{
               scale: isActive ? 1 : 1.1,
