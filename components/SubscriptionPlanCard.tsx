@@ -51,6 +51,7 @@ const SubscriptionPlanCard = ({
   };
 
   useEffect(() => {
+    if (!user?.primaryEmailAddress?.emailAddress) return;
     const fetchSubscriptionStatus = async () => {
       try {
         const email = user?.primaryEmailAddress?.emailAddress;
@@ -88,7 +89,7 @@ const SubscriptionPlanCard = ({
     };
 
     fetchSubscriptionStatus();
-  }, [user,name]);
+  }, [user?.primaryEmailAddress?.emailAddress, name]);
 
   const handlePayment = async () => {
     try {
