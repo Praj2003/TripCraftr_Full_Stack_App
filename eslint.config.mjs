@@ -10,13 +10,15 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-
-  // ✅ Add this block to prevent linting Prisma-generated files
+  // ✅ MUST BE FIRST
   {
-    ignores: ["app/generated/**/*"], // or "prisma/generated/**/*" if needed
+    ignores: [".next/**/*", "app/generated/**/*"],
   },
 
+  // ✅ Next.js & TypeScript rules
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+
+  // ✅ Project source files config
   {
     files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
     languageOptions: {
