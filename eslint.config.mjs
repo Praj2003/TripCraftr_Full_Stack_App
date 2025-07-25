@@ -12,8 +12,12 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 
+  // ✅ Add this block to prevent linting Prisma-generated files
   {
-    // Apply to all TS/JS files
+    ignores: ["app/generated/**/*"], // or "prisma/generated/**/*" if needed
+  },
+
+  {
     files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
     languageOptions: {
       parserOptions: {
@@ -21,10 +25,9 @@ const eslintConfig = [
       },
     },
     rules: {
-      // Disable annoying rules
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-empty-object-type": "off",
-      "@typescript-eslint/no-unused-vars": "warn", // Or "off" if needed
+      "@typescript-eslint/no-unused-vars": "warn",
     },
   },
 ];
