@@ -50,7 +50,7 @@ export async function GET(request: Request) {
   const plan = searchParams.get("plan");
 
   try {
-    const subscription = await prisma.subscription.findUnique({
+    const subscription = await prisma.subscription.findFirst({
       where: {
         userEmail: email || "",
         plan: plan || "",

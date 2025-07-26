@@ -1,5 +1,26 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## About Project
+
+TripCraftr is a full-stack travel planning web application built with Next.js, Tailwind CSS, shadcn/ui, Gemini API, and Razorpay. It simplifies trip planning by generating personalized travel itineraries based on user preferences.
+
+🚀 Key Features
+🧠 AI-Powered Itinerary Generation
+Powered by Google’s Gemini API, the app takes user inputs like trip duration, destination, budget, travel style, and interests to generate smart, customized day-wise travel schedules.
+
+🔐 Authentication with Clerk
+User authentication and account management is handled using Clerk, a secure and developer-friendly identity platform. Clerk provides prebuilt UI components for sign-in, sign-up, and user profile management, making integration seamless and secure with support for sessions, JWTs, and multi-factor authentication.
+
+💳 Payment Integration with Razorpay
+Integrated Razorpay allows users to unlock premium features or itinerary enhancements through secure and smooth online payments.
+
+💅 Modern UI/UX
+Built using Tailwind CSS and shadcn/ui for a clean, responsive, and accessible interface.
+
+## ScreenShots
+
+
+
 ## Getting Started
 
 First, run the development server:
@@ -13,6 +34,7 @@ pnpm dev
 # or
 bun dev
 ```
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

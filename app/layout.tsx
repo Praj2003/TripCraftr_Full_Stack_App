@@ -25,6 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Link to manifest.json */}
+        <link rel="manifest" href="/manifest.json" />
+
+        {/* Optional: Add favicon, theme color, and mobile support */}
+        <meta name="theme-color" content="#22c55e" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <ClerkProvider>
         <body
           className={` ${inter.variable} antialiased`}

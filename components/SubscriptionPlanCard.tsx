@@ -94,6 +94,7 @@ const SubscriptionPlanCard = ({
   const handlePayment = async () => {
     try {
       const isScripLoaded = await loadRazorpayScript();
+      console.log("✅ Razorpay script loaded:");
       if (!isScripLoaded) {
         toast.error("Razorpay SDK failed to load. Please try again later.", {
           duration: 5000,
@@ -116,6 +117,8 @@ const SubscriptionPlanCard = ({
       });
 
       const orderData = await orderResponse.json();
+
+      console.log("🔑 Razorpay key:", process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID);
 
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
