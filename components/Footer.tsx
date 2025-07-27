@@ -19,30 +19,34 @@ const Footer = () => {
       </div>
 
       <div className="w-full flex flex-col items-center gap-8 p-2">
-        <div className="w-full flex justify-center items-center">
-          <motion.button
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: "white",
-              color: "black",
-            }}
-            className="px-3 py-1 text-white font-bold text-md cursor-pointer rounded-lg"
-          >
-            Home
-          </motion.button>
-        </div>
+        <Link href={"/"}>
+          <div className="w-full flex justify-center items-center">
+            <motion.button
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "white",
+                color: "black",
+              }}
+              className="px-3 py-1 text-white font-bold text-md cursor-pointer rounded-lg"
+            >
+              Home
+            </motion.button>
+          </div>
+        </Link>
 
         <div>
-          <motion.button
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: "white",
-              color: "black",
-            }}
-            className="px-3 py-1 text-white font-bold text-md cursor-pointer rounded-lg"
-          >
-            Subscribe
-          </motion.button>
+          <Link href={"/subscribe"}>
+            <motion.button
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "white",
+                color: "black",
+              }}
+              className="px-3 py-1 text-white font-bold text-md cursor-pointer rounded-lg"
+            >
+              Subscribe
+            </motion.button>
+          </Link>
         </div>
 
         <div>
@@ -92,7 +96,7 @@ const Footer = () => {
           </motion.div>
           <motion.div whileHover={{ scale: 1.1, color: "pink" }}>
             <Link
-              href={"https://www.linkedin.com/in/prajval-kanda-831759237/"}
+              href={"https://github.com/Praj2003/TripCraftr_Full_Stack_App"}
               className="text-4xl font-bold"
             >
               <FaGithub />
