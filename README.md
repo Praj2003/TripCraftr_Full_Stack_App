@@ -17,8 +17,13 @@ Integrated Razorpay allows users to unlock premium features or itinerary enhance
 💅 Modern UI/UX
 Built using Tailwind CSS and shadcn/ui for a clean, responsive, and accessible interface.
 
-## ScreenShots
-
+## Screenshots
+### Home Page
+<img width="1437" height="669" alt="Screenshot 2025-07-31 at 10 54 00 PM" src="https://github.com/user-attachments/assets/58028585-7a4b-40a5-9087-fba608717f09" />
+### Subscription page
+<img width="1437" height="669" alt="Screenshot 2025-07-31 at 10 54 22 PM" src="https://github.com/user-attachments/assets/47e33720-9b1a-4784-a391-58a44c9958fc" />
+## AI Page 
+<img width="1437" height="669" alt="Screenshot 2025-07-31 at 10 57 28 PM" src="https://github.com/user-attachments/assets/47183396-a48b-486e-b984-811d9436a675" />
 
 
 ## Getting Started
