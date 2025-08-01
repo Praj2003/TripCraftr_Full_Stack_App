@@ -49,7 +49,7 @@ export async function POST(req: Request) {
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    const prompt = `Create a personalized travel itinerary for ${numberOfTravelers} people visiting ${destination} from ${startDate} to ${endDate}. The trip type is ${tripType}, with a ${budgetLevel} budget. Provide a day-wise plan with activities and suggestions in less than 40 words.`;
+    const prompt = `Create a personalized travel itinerary for ${numberOfTravelers} people visiting ${destination} from ${startDate} to ${endDate}. The trip type is ${tripType}, with a ${budgetLevel} budget. Provide a day-wise plan with activities and suggestions in less than 40 words and in clear and short points.`;
 
     const result = await model.generateContent(prompt);
 
