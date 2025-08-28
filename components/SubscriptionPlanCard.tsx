@@ -98,14 +98,15 @@ const SubscriptionPlanCard = ({
 
   const handlePayment = async () => {
     try {
-      const isScripLoaded = await loadRazorpayScript();
+      const isScriptLoaded = await loadRazorpayScript();
       console.log("✅ Razorpay script loaded:");
-      if (!isScripLoaded) {
+      if (!isScriptLoaded) {
         toast.error("Razorpay SDK failed to load. Please try again later.", {
           duration: 5000,
         });
         return;
       }
+
       const email = user?.primaryEmailAddress?.emailAddress;
       if (!email) {
         toast.error("User email not found. Please log in again.", {
@@ -113,6 +114,7 @@ const SubscriptionPlanCard = ({
         });
         return;
       }
+
       const orderResponse = await fetch("/api/createOrder", {
         method: "POST",
         headers: {
@@ -122,6 +124,14 @@ const SubscriptionPlanCard = ({
       });
 
       const orderData = await orderResponse.json();
+
+      // ✅ Change 2: Guard against failed order creation
+      if (!orderResponse.ok || !orderData?.data?.id) {
+        toast.error("Failed to create Razorpay order. Please try again.", {
+          duration: 5000,
+        });
+        return;
+      }
 
       console.log("🔑 Razorpay key:", process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID);
 
@@ -150,13 +160,22 @@ const SubscriptionPlanCard = ({
                 amount: price,
               }),
             });
+
             const paymentData = await result.json();
 
-            if (result.ok && paymentData?.data?.isActive) {
-              setIsActive(paymentData.data.isActive);
-              toast.success("Payment successful! Subscription activated.", {
-                duration: 5000,
-              });
+            // ✅ Change 3: Add fallback toast
+            if (result.ok) {
+              setIsActive(paymentData?.data?.isActive ?? false);
+
+              if (paymentData?.data?.isActive) {
+                toast.success("Payment successful! Subscription activated.", {
+                  duration: 5000,
+                });
+              } else {
+                toast.success("Payment recorded successfully.", {
+                  duration: 5000,
+                });
+              }
             }
           } catch (err) {
             console.error("Payment processing failed:", err);
