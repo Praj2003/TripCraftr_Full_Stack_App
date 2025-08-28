@@ -2,54 +2,35 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
-import { Typewriter } from 'react-simple-typewriter'
+import { FlipWords } from "@/components/ui/flip-words";
 
 export default function Home() {
+  const words = ["Perfect", "Beautiful", "Seamless"];
   return (
     <div className="min-w-full min-h-screen grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 lg:pt-20 pt-40 gap-5 lg:gap-0 md:gap-0">
       <div className="h-full w-full flex items-center justify-center">
         <div className="flex flex-col items-center justify-center gap-4">
           <h1 className="font-bold text-white text-6xl text-center">
-            Craft Your Perfect Journey with AI
+            Craft Your <FlipWords words={words}  className="text-blue-500 font-bold"/> Journey with AI
           </h1>
-
-          <p className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-blue-300 text-lg text-center">
-              <Typewriter
-                words={["Plan Your Trip", "Discover New Destinations", "Experience the World"]}
-                loop={0}
-                cursor
-                cursorStyle="_"
-                typeSpeed={70}
-                deleteSpeed={50}
-                delaySpeed={1000}
-              />
-          </p>
 
           <div className="flex items-center justify-center gap-7 mt-9">
             <Link href={"/ai"}>
-              <motion.button
-                whileHover={{
-                  scale: 1.1,
-                  backgroundColor: "white",
-                  color: "black",
-                }}
-                className="px-3 py-2 bg-black text-white font-bold rounded-lg cursor-pointer"
-              >
-                Get Started
-              </motion.button>
+              <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+                  Start Planning
+                </span>
+              </button>
             </Link>
 
             <Link href={"/sign-up"}>
-              <motion.button
-                whileHover={{
-                  scale: 1.1,
-                  backgroundColor: "white",
-                  color: "black",
-                }}
-                className="px-3 py-2 bg-black text-white font-bold rounded-lg cursor-pointer"
-              >
-                Sign Up
-              </motion.button>
+              <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+                  Sign Up
+                </span>
+              </button>
             </Link>
           </div>
         </div>
